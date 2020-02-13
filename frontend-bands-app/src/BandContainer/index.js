@@ -1,5 +1,6 @@
 import React from 'react'
 import BandNewForm from './BandNewForm'
+import BandList from './BandList'
 class BandContainer extends React.Component {
 	constructor() {
 
@@ -34,6 +35,9 @@ class BandContainer extends React.Component {
 			<div>
 				BandContainer
 				<BandNewForm />
+				<BandList 
+				bands={this.state.bands}
+				/>
 			</div>
 		)
 	}
