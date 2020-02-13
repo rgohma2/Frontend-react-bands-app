@@ -52,12 +52,34 @@ class BandContainer extends React.Component {
 		}
 	}
 
+	deleteBand = async (id) => {
+		try{
+			const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/bands/' + id,
+			{
+				method: 'DELETE'
+			})
+
+			const deleteJson = await response.json()
+			console.log(id);
+
+			if (deleteJson.status === 200) {
+				this.setState({
+					bands: this.state.bands.filter(band => band.id !== id)
+				})
+			}
+
+		}catch(err){
+			console.log(err)
+		}
+	}
+
 	render() {
 		return(
 			<div>
 				BandContainer
 				<BandList 
 				bands={this.state.bands}
+				deleteBand={this.deleteBand}
 				/>
 				<BandNewForm 
 				addBand={this.addBand}
