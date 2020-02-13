@@ -16,6 +16,7 @@ function BandList(props){
 			<br />
 			Drums: {band.drums}
 			<button onClick={() => {props.deleteBand(band.id)}}>Delete</button>
+			<button onClick={() => {props.editBand(band.id)}}>Edit</button>
 			</li>
 		)}
 		</div>

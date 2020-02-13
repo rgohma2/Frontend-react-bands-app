@@ -1,12 +1,12 @@
 import React from 'react'
 
-class BandNewForm extends React.Component {
-	constructor() {
+class BandEditModal extends React.Component {
+	constructor(props) {
 
-		super()
+		super(props)
 
 		this.state = {
-      		"name": "",
+			"name": "",
       		"year_formed": "",
       		"vocals": "",
 			"drums": "",
@@ -20,23 +20,10 @@ class BandNewForm extends React.Component {
 		})
 	}
 
-	handleSubmit = (event) => {
-		event.preventDefault()
-		this.props.addBand(this.state)
-		this.setState({
-			"name": "",
-      		"year_formed": "",
-      		"vocals": "",
-			"drums": "",
-      		"guitar": ""
-		})
-	}
-
-
 	render() {
 		return(
 			<div>
-				<h3>Create New Band</h3>
+				<h3>Edit Band</h3>
 				<form onSubmit={this.handleSubmit}>
 					Name:<input type="text" name="name" 
 					value={this.state.name} 
@@ -53,11 +40,11 @@ class BandNewForm extends React.Component {
 					Drums:<input type="text" name="drums"
 					value={this.state.drums} 
 					onChange={this.handleChange}/>/>
-					<button>Add New Band</button>
+					<button>Update Band</button>
 				</form>
 			</div>
 		)
 	}
 }
 
-export default BandNewForm
+export default BandEditModal

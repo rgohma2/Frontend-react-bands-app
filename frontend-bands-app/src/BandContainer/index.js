@@ -1,6 +1,7 @@
 import React from 'react'
 import BandNewForm from './BandNewForm'
 import BandList from './BandList'
+import BandEditModal from './BandEditModal'
 class BandContainer extends React.Component {
 	constructor() {
 
@@ -84,6 +85,7 @@ class BandContainer extends React.Component {
 				<BandNewForm 
 				addBand={this.addBand}
 				/>
+				<BandEditModal />
 			</div>
 		)
 	}
