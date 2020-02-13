@@ -20,12 +20,17 @@ class BandNewForm extends React.Component {
 		})
 	}
 
+	handleSubmit = (event) => {
+		event.preventDefault()
+		this.props.addBand(this.state)
+	}
+
 
 	render() {
 		return(
 			<div>
 				<h3>Create New Band</h3>
-				<form>
+				<form onSubmit={this.handleSubmit}>
 					Name:<input type="text" name="name" 
 					alue={this.state.name} 
 					onChange={this.handleChange}/>

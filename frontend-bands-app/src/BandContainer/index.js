@@ -30,13 +30,37 @@ class BandContainer extends React.Component {
 		}
 	}
 
+	addBand = async (band) => {
+		try{
+			const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/bands/', {
+				method: 'POST',
+				body: JSON.stringify(band),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}) 
+
+			const newBand = await response.json()
+			this.setState({
+				bands: [...this.state.bands, newBand.data]
+			})
+
+
+
+		}catch(err){
+			console.log(err)
+		}
+	}
+
 	render() {
 		return(
 			<div>
 				BandContainer
-				<BandNewForm />
 				<BandList 
 				bands={this.state.bands}
+				/>
+				<BandNewForm 
+				addBand={this.addBand}
 				/>
 			</div>
 		)

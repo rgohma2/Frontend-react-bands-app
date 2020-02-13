@@ -5,7 +5,7 @@ function BandList(props){
 	return(
 		<div>
 		{props.bands.map(band => 
-			<li>
+			<li key={band.id}>
 			Name: {band.name} 
 			<br />
 			Year Formed: {band.year_formed} 
@@ -17,7 +17,6 @@ function BandList(props){
 			Drums: {band.drums}
 			</li>
 		)}
-
 		</div>
 	)
 }
