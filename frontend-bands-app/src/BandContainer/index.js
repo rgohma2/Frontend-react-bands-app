@@ -8,7 +8,8 @@ class BandContainer extends React.Component {
 		super()
 
 		this.state = {
-			bands:[]
+			bands:[],
+			idOfBandToEdit: -1
 		}
 	}
 
@@ -47,7 +48,6 @@ class BandContainer extends React.Component {
 			})
 
 
-
 		}catch(err){
 			console.log(err)
 		}
@@ -74,6 +74,12 @@ class BandContainer extends React.Component {
 		}
 	}
 
+	editBand = (id) => {
+		this.setState({
+			idOfBandToEdit: id
+		})
+	}
+
 	render() {
 		return(
 			<div>
@@ -81,11 +87,21 @@ class BandContainer extends React.Component {
 				<BandList 
 				bands={this.state.bands}
 				deleteBand={this.deleteBand}
+				editBand={this.editBand}
 				/>
 				<BandNewForm 
 				addBand={this.addBand}
 				/>
-				<BandEditModal />
+				{
+				this.state.idOfBandToEdit !== -1
+				?	
+				<BandEditModal bandToEdit={
+					this.state.bands.find(band => band.id === this.state.idOfBandToEdit)
+				}
+				/>
+				:
+				null
+				}
 			</div>
 		)
 	}
