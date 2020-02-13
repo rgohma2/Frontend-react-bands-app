@@ -14,6 +14,10 @@ class BandEditModal extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		this.setState(this.props.bandToEdit)
+	}
+
 	handleChange = (event) => {
 		this.setState({
 			[event.target.name]: event.target.value
