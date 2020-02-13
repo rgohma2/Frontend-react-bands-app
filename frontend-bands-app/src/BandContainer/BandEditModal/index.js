@@ -24,6 +24,11 @@ class BandEditModal extends React.Component {
 		})
 	}
 
+	handleSubmit = (event) => {
+		event.preventDefault()
+		this.props.updateBand(this.state)
+	}
+
 	render() {
 		return(
 			<div>

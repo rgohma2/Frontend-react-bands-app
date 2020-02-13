@@ -80,6 +80,33 @@ class BandContainer extends React.Component {
 		})
 	}
 
+	updateBand = async (newBandInfo) => {
+		try{
+			const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/dogs/' + this.state.idOfBandToEdit,
+			{
+				method: 'PUT',
+				body: JSON.stringify(newBandInfo),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			const updatedBandJson = response.json()
+
+			if (response.status === 200) {
+				const bands = this.state.bands
+				const index = bands.findIndex(band => band.id === this.state.idOfBandToEdit)
+				bands[index] = updatedBandJson.data
+				this.setState({
+					bands: bands,
+					idOfBandToEdit: -1
+				})
+			}
+		}catch(err){
+			console.log(err)
+		}
+	}
+
+
 	render() {
 		return(
 			<div>
@@ -98,7 +125,7 @@ class BandContainer extends React.Component {
 				<BandEditModal bandToEdit={
 					this.state.bands.find(band => band.id === this.state.idOfBandToEdit)
 				}
-				/>
+				updateBand={this.updateBand}/>
 				:
 				null
 				}
